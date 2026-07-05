@@ -1,0 +1,50 @@
+# Gitignore for Lahi Task Management System
+
+# Build artifacts
+bin/
+obj/
+
+# Node modules
+node_modules/
+dist/
+.angular/cache/ # Ignore Angular cache directory
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosf
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# Package Manager files
+*.nupkg
+*.snupkg
+
+# Database files
+*.mdf
+*.ldf
+*.db
+
+# Test results
+TestResults/
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# Docker
+*.dockerignore
+docker-compose.override.yml # Often contains local-specific overrides
+
+# Other
+*.bak
+*.tmp
+*~
+# Exclude the backend folder from the root .gitignore if it's a separate repo or managed differently
+# backend/
