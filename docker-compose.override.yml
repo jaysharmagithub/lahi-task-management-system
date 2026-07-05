@@ -1,0 +1,5 @@
+# Resetting to prevent breaking the main configuration
+services:
+  api:
+    ports:
+      - "8081:8080"

@@ -1,0 +1,28 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS test
+WORKDIR /app
+
+# Copy solution and all project files first for layer caching
+COPY TaskManagement.sln .
+COPY src/Domain/TaskManagement.Domain.csproj src/Domain/
+COPY src/Application/TaskManagement.Application.csproj src/Application/
+COPY src/Infrastructure/TaskManagement.Infrastructure.csproj src/Infrastructure/
+COPY src/API/TaskManagement.API.csproj src/API/
+COPY tests/Application.Tests/TaskManagement.Application.Tests.csproj tests/Application.Tests/
+COPY tests/Infrastructure.Tests/TaskManagement.Infrastructure.Tests.csproj tests/Infrastructure.Tests/
+COPY tests/API.Tests/TaskManagement.API.Tests.csproj tests/API.Tests/
+
+RUN dotnet restore
+
+# Copy all source
+COPY . .
+
+# Run all three test projects with detailed output
+CMD dotnet test tests/Application.Tests/TaskManagement.Application.Tests.csproj \
+      --no-restore --logger "console;verbosity=normal" \
+      --results-directory /test-results/application \
+  && dotnet test tests/Infrastructure.Tests/TaskManagement.Infrastructure.Tests.csproj \
+      --no-restore --logger "console;verbosity=normal" \
+      --results-directory /test-results/infrastructure \
+  && dotnet test tests/API.Tests/TaskManagement.API.Tests.csproj \
+      --no-restore --logger "console;verbosity=normal" \
+      --results-directory /test-results/api
