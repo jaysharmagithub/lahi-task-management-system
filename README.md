@@ -234,8 +234,3 @@ We welcome contributions to the Lahi Task Management System! To contribute:
 
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE). See the `LICENSE` file in the root of the repository for full details.
-
----
-
-## 📞 Contact
-For any questions, issues, or support, please open an issue on the GitHub repository or contact [jay@example.com](mailto:jay@example.com).
